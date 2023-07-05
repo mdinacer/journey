@@ -19,12 +19,12 @@ To get started with the Data Sheet App, follow these steps:
 1. Clone the repository:
 
 ```shell
-git clone https://github.com/your-username/data-sheet-app.git
+git clone https://github.com/mdinacer/journey.git
 ```
 
 2. Install the dependencies:
 ```shell
-cd data-sheet-app
+cd journey
 npm install
 ```
 
