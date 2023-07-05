@@ -92,7 +92,6 @@ export default function useDataManager() {
   }, [progressResult?.id, status]);
 
   useEffect(() => {
-    console.log('POLLING', progressResult);
     startPolling();
 
     return () => {

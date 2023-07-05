@@ -5,12 +5,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  console.log(req.body);
   try {
     const { data: values } = req.body;
-
-
-
 
     if (!values) {
       return res.status(500).end('values not found');

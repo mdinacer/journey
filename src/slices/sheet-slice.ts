@@ -41,7 +41,6 @@ export const sheetSlice = createSlice({
       state.selectedCell = action.payload;
     },
     setSheetSize: (state, action) => {
-
       state.sheetSize = action.payload;
     },
     setColumnsLabels: (state, action) => {
@@ -50,8 +49,7 @@ export const sheetSlice = createSlice({
     setDataStatus: (state, action) => {
       state.dataStatus = action.payload;
     }
-  },
-
+  }
 });
 
 export const cellsSelectors = sheetCellsAdapter.getSelectors(

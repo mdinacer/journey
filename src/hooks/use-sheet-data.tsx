@@ -102,7 +102,6 @@ export default function useSheetData() {
 
   const handleSaveData = useCallback(async () => {
     if (busy) {
-      console.log('Busy');
       return;
     }
     try {
