@@ -1,38 +1,54 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Data Sheet App
+
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
+The Data Sheet App is a simple application that allows users to create and manage data sheets similar to Excel spreadsheets. The cells in the sheet are dynamically linked, meaning that changes in one cell can affect the values in other cells. The app provides a reactive and resizable data sheet interface and utilizes Redux for state management.
+
+## Prerequisites
+
+Before running the application, please ensure that you have the following dependencies installed:
+
+- Node.js
+- npm
+- Docker (with the backend Docker image running)
 
 ## Getting Started
 
-First, run the development server:
+To get started with the Data Sheet App, follow these steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+1. Clone the repository:
+
+```shell
+git clone https://github.com/your-username/data-sheet-app.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install the dependencies:
+```shell
+cd data-sheet-app
+npm install
+```
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+3. Start the application:
+```shell
+npm run dev
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+**Note:** Ensure that the backend Docker image is running.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Usage
 
-## Learn More
+Once the Data Sheet App is up and running, you can access it in your web browser by visiting `http://localhost:3000`. The application provides a user-friendly interface for creating and managing data sheets. You can add, edit, and delete cells, and the changes will be reflected in real-time.
 
-To learn more about Next.js, take a look at the following resources:
+The application leverages Redux for state management, ensuring that the data is stored and synchronized across different components. The data is persisted using the backend Docker image, allowing you to retrieve your sheets even after restarting the application.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Project Goal and Approach
 
-## Deploy on Vercel
+The goal of this project was not to create a new Excel-like application, but rather to assess the candidate's proficiency in JavaScript/TypeScript and showcase their capabilities and skills in data management, API call integration, and error handling.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Throughout the development of this app, various techniques were employed to enhance user experience and optimize functionality. One notable technique implemented was the use of a debounce method to delay the saving operation while the user is still modifying the table. This helps to prevent excessive saving operations and improve performance. Alternatively, another method could involve creating an interval to save data (if changed) on a fixed interval. The choice of which method to use depends on the full application schema and specific needs.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The application serves as a demonstration of the candidate's technical skills and serves as a solid foundation for further enhancements and customization as per project requirements.
+
+
