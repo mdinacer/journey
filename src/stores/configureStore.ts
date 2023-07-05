@@ -5,8 +5,7 @@ import { configureStore } from '@reduxjs/toolkit';
 
 export const store = configureStore({
   reducer: {
-    sheet: sheetSlice.reducer,
-
+    sheet: sheetSlice.reducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

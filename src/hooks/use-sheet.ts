@@ -1,10 +1,8 @@
-import { useAppSelector } from "@/stores/configureStore"
-
-
+import { useAppSelector } from '@/stores/configureStore';
 
 export default function useSheet() {
-    const { sheetSize } = useAppSelector(state => state.sheet)
-    return {
-        sheetSize
-    }
-};
+  const { sheetSize } = useAppSelector((state) => state.sheet);
+  return {
+    sheetSize
+  };
+}

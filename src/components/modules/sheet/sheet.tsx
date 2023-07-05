@@ -1,46 +1,51 @@
-import React, { useMemo } from 'react';
-import Row from '../row/row';
-import Column from '../column/column';
-import Cell from '../cell/cell';
+'use client';
+
 import useSheet from '@/hooks/use-sheet';
+import React, { useMemo } from 'react';
+import Cell from '../cell/cell';
+import Row from '../row/row';
 import { CELL_HEIGHT, CELL_WIDTH, alphabet } from './data';
 
 interface Props {}
 
 const Sheet: React.FC<Props> = () => {
   const { sheetSize } = useSheet();
+  const { width, height } = sheetSize;
 
   const colsCount = useMemo(
-    () => Math.ceil(sheetSize.width / CELL_WIDTH),
-    [sheetSize.width]
+    () => Math.min(alphabet.length, Math.ceil(width / (CELL_WIDTH + 10))),
+    [width]
   );
   const rowsCount = useMemo(
-    () => Math.ceil(sheetSize.height / CELL_HEIGHT),
-    [sheetSize.height]
+    () => Math.ceil((height - 60) / (CELL_HEIGHT + 8)),
+    [height]
   );
 
   return (
-    <table className='w-full table-fixed border-spacing-0'>
-      <thead className='bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400'>
+    <table className="w-auto table-fixed border-separate border-spacing-y-2">
+      <thead className="bg-gray-50 uppercase ">
         <tr>
-          {[...Array(Math.min(colsCount, 24))].map((_, headerIndex) => (
-            <th key={headerIndex} scope='col' className='px-6 py-3'>
+          {[...Array(colsCount)].map((_, headerIndex) => (
+            <th
+              key={headerIndex}
+              scope="col"
+              className="table-cell w-full min-w-[200px] bg-[#EFEFEF] px-6 py-3 font-normal"
+            >
               {alphabet[headerIndex]}
             </th>
           ))}
         </tr>
       </thead>
-      <tbody>
+      <tbody className="">
         {[...Array(rowsCount)].map((_, rowIndex) => (
           <Row index={rowIndex + 1} key={rowIndex}>
-            {[...Array(Math.min(colsCount, 24))].map((_, colIndex) => (
-              <Column key={colIndex}>
-                <Cell
-                  textAlgin='center'
-                  col={alphabet[colIndex]}
-                  row={rowIndex + 1}
-                ></Cell>
-              </Column>
+            {[...Array(colsCount)].map((_, colIndex) => (
+              <Cell
+                key={colIndex}
+                textAlgin="center"
+                col={alphabet[colIndex]}
+                row={rowIndex + 1}
+              />
             ))}
           </Row>
         ))}
