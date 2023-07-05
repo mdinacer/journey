@@ -115,10 +115,11 @@ export default function useSheetData() {
     }
   }, [busy, exportCSV, saveData]);
 
+  // Create debounce effect for saving (delay by 1 minute)
   useEffect(() => {
     const timeOut = setTimeout(() => {
       handleSaveData();
-    }, 500);
+    }, 60 * 1000);
 
     return () => {
       clearTimeout(timeOut);
