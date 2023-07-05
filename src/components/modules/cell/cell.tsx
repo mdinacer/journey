@@ -29,13 +29,12 @@ const Cell: React.FC<CellProps> = ({ col, row, textAlgin = 'left' }) => {
   const handleOnStartEdit = useCallback(() => {
     setValue(cell?.value || '');
     setIsEditable(true);
+    handleCellSelect(cell);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cell?.value]);
 
   const handleOnSelect = useCallback(
-    () => {
-      handleCellSelect(cell);
-    },
+    () => {},
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [cell]
   );

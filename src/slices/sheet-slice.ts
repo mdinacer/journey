@@ -1,3 +1,4 @@
+import { COLUMNS_LABELS } from '@/components/modules/sheet/data';
 import { SheetCell } from '@/models/sheet-cell';
 import { RootState } from '@/stores/configureStore';
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
@@ -6,6 +7,8 @@ interface SheetState {
   sheetSize: { width: number; height: number };
   selectedCell: SheetCell | null;
   status: 'idle' | 'pending' | 'error';
+  columnsLabels: Array<string>;
+  dataStatus: 'modified' | undefined;
 }
 
 const initialState: SheetState = {
@@ -14,7 +17,9 @@ const initialState: SheetState = {
     height: 600
   },
   status: 'idle',
-  selectedCell: null
+  selectedCell: null,
+  columnsLabels: COLUMNS_LABELS,
+  dataStatus: undefined
 };
 
 const sheetCellsAdapter = createEntityAdapter<SheetCell>({
@@ -36,10 +41,17 @@ export const sheetSlice = createSlice({
       state.selectedCell = action.payload;
     },
     setSheetSize: (state, action) => {
+
       state.sheetSize = action.payload;
+    },
+    setColumnsLabels: (state, action) => {
+      state.columnsLabels = action.payload;
+    },
+    setDataStatus: (state, action) => {
+      state.dataStatus = action.payload;
     }
   },
-  extraReducers: {}
+
 });
 
 export const cellsSelectors = sheetCellsAdapter.getSelectors(
@@ -54,5 +66,7 @@ export const {
   updateCells,
   upsertCell,
   setSelectedCell,
-  setSheetSize
+  setSheetSize,
+  setColumnsLabels,
+  setDataStatus
 } = sheetSlice.actions;

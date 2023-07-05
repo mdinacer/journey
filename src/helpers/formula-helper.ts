@@ -39,7 +39,6 @@ export function calculateFormula(
 
   let parsedFormula = formula.replace(cellRegex, (match) => {
     const [item] = Array.from(match.matchAll(cellRegex));
-    console.log(item);
 
     const cellReference = `${item[1]}${item[2]}`.replace('$', '');
     const cellValue = referencedCells[cellReference];
