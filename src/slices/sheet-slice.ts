@@ -8,7 +8,6 @@ interface SheetState {
   selectedCell: SheetCell | null;
   status: 'idle' | 'pending' | 'error';
   columnsLabels: Array<string>;
-  dataStatus: 'modified' | undefined;
 }
 
 const initialState: SheetState = {
@@ -19,7 +18,6 @@ const initialState: SheetState = {
   status: 'idle',
   selectedCell: null,
   columnsLabels: COLUMNS_LABELS,
-  dataStatus: undefined
 };
 
 const sheetCellsAdapter = createEntityAdapter<SheetCell>({
@@ -46,9 +44,7 @@ export const sheetSlice = createSlice({
     setColumnsLabels: (state, action) => {
       state.columnsLabels = action.payload;
     },
-    setDataStatus: (state, action) => {
-      state.dataStatus = action.payload;
-    }
+
   }
 });
 
@@ -66,5 +62,4 @@ export const {
   setSelectedCell,
   setSheetSize,
   setColumnsLabels,
-  setDataStatus
 } = sheetSlice.actions;
