@@ -52,3 +52,27 @@ Throughout the development of this app, various techniques were employed to enha
 The application serves as a demonstration of the candidate's technical skills and serves as a solid foundation for further enhancements and customization as per project requirements.
 
 
+## How it Works
+
+When the application starts, a Redux slice is initiated with different states, such as the sheet size and the cells entity adapter. The table is then created with dynamic columns and rows count, which depends on the container size. The size is stored in the `sheetSize` state on the sheet slice.
+
+All cells in the data sheet are editable and support direct values, equations, and formulas. The cells are dynamically linked, meaning that modifying one cell's value will update other cells that are referencing it.
+
+An auto-save mechanism is implemented using a debounced function. When the user modifies the table, the debounce function is fired with a 1-minute delay. If the user makes another modification within that delay, the debounce will be restarted, and the saving will be done 1 minute after the latest change.
+
+For the saving method, the data from active rows (rows that contain cells with values) is parsed and converted to CSV data format. The converted data is then sent to the backend API (`/save`).
+
+The endpoint sends a response, and depending on that response, the app handles it as follows:
+
+- **DONE:** Data is saved successfully.
+- **PROGRESS:** The returned ID is stored, and a polling function is launched to check the status with the provided ID at a 5-second interval.
+- **ERROR:** If the saving is not successful, a toast message will appear, and the save function will be retried.
+
+If I had more time, here are some additional features I would consider adding:
+
+- A status bar showing details about the sheet, such as the column count, row count, and selected cell.
+- A section indicating the data status, such as whether it has been modified, saved, or has errors, with a dynamic status showing the saving operation status (e.g., auto-save in progress, data saved, error saving, retrying in n seconds).
+- An auto-save option for the user, similar to the auto-save feature in applications like VSCode.
+
+These additional features would further enhance the usability and functionality of the Data Sheet App.
+
